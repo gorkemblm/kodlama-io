@@ -11,8 +11,7 @@ public class StarbucksCustomerManager extends BaseCustomerManager{
     public StarbucksCustomerManager(CustomerCheckService CustomerCheckService) {
         this.customerCheckService = CustomerCheckService;
     }
-    
-    
+
     @Override
     //Starbucks kontrol sağlaması istediği için sadece buraya override ettim.
     public void save(Customer customer) {

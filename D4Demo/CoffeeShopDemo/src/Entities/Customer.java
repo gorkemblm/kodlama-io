@@ -59,9 +59,4 @@ public class Customer implements Entity {
         this.nationalityId = nationalityId;
     }
 
-    public String getTckn() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
 }

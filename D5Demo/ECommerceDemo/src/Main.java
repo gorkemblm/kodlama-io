@@ -1,9 +1,9 @@
-import Business.abstracts.UserService;
-import Business.concretes.UserManager;
+import Business.abstracts.AuthService;
+import Business.concretes.AuthManager;
 import Core.abstracts.AuthorityService;
 import Core.concretes.AuthorityDefaultManager;
 import Core.concretes.EmailManager;
-import Core.concretes.AuthorityGoogleManager;
+import Core.concretes.outs.AuthorityGoogleManager;
 import Core.concretes.adapters.AuthorityGoogleManagerAdapter;
 import DataAccess.concretes.DefaultUserDao;
 import Entities.concretes.User;
@@ -28,7 +28,7 @@ public class Main {
         AuthorityService authorityService = new AuthorityGoogleManagerAdapter(new AuthorityGoogleManager());//Yetkilendirme içeren
         AuthorityService authorityService2 = new AuthorityDefaultManager();//Yetkilendirme içermeyen
 
-        UserService userService = new UserManager(new EmailManager(),new DefaultUserDao(inMemory),authorityService);
+        AuthService authService = new AuthManager(new EmailManager(),new DefaultUserDao(inMemory),authorityService);
 
         String actions = "1 - SignUp\n" +
                          "2 _ SignIn\n" +
@@ -62,7 +62,7 @@ public class Main {
                     String password = scanner.nextLine();
 
                     User registerUser = new User(101,fisrtname,lastName,email,password);
-                    userService.signUp(registerUser,authorityService2);
+                    authService.signUp(registerUser,authorityService2);
                     return;
 
                 }else if(action.equals("2")) {
@@ -72,7 +72,7 @@ public class Main {
                     String password = scanner.nextLine();
 
                     User registerUser = new User(102,fisrtname,lastName,email,password);
-                    userService.signUp(registerUser,authorityService);
+                    authService.signUp(registerUser,authorityService);
                     return;
 
                 }else {
@@ -85,7 +85,7 @@ public class Main {
                 String password = scanner.nextLine();
 
                 User inUser = new User(email,password);
-                userService.signIn(inUser);
+                authService.signIn(inUser);
                 return;
 
             }else {

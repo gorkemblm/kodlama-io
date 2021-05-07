@@ -1,7 +1,7 @@
 package Core.concretes.adapters;
 
 import Core.abstracts.AuthorityService;
-import Core.concretes.AuthorityGoogleManager;
+import Core.concretes.outs.AuthorityGoogleManager;
 
 public class AuthorityGoogleManagerAdapter implements AuthorityService {
     private AuthorityGoogleManager authorityGoogleManager;
@@ -11,6 +11,6 @@ public class AuthorityGoogleManagerAdapter implements AuthorityService {
     }
     @Override
     public boolean authorize() {
-        return true;
+        return authorityGoogleManager.authorize();
     }
 }

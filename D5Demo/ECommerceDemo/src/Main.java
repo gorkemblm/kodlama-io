@@ -3,8 +3,8 @@ import Business.concretes.AuthManager;
 import Core.abstracts.AuthorityService;
 import Core.concretes.AuthorityDefaultManager;
 import Core.concretes.EmailManager;
-import Core.concretes.outs.AuthorityGoogleManager;
-import Core.concretes.adapters.AuthorityGoogleManagerAdapter;
+import Core.concretes.outs.GoogleManager;
+import Core.concretes.adapters.GoogleManagerAdapter;
 import DataAccess.concretes.DefaultUserDao;
 import Entities.concretes.User;
 import InMemoryDB.InMemory;
@@ -25,7 +25,7 @@ public class Main {
         inMemory.users.add(user_2);
         inMemory.users.add(user_3);
 
-        AuthorityService authorityService = new AuthorityGoogleManagerAdapter(new AuthorityGoogleManager());//Yetkilendirme içeren
+        AuthorityService authorityService = new GoogleManagerAdapter(new GoogleManager());//Yetkilendirme içeren
         AuthorityService authorityService2 = new AuthorityDefaultManager();//Yetkilendirme içermeyen
 
         AuthService authService = new AuthManager(new EmailManager(),new DefaultUserDao(inMemory),authorityService);

@@ -5,30 +5,20 @@ import Core.concretes.AuthorityDefaultManager;
 import Core.concretes.EmailManager;
 import Core.concretes.outs.GoogleManager;
 import Core.concretes.adapters.GoogleManagerAdapter;
-import DataAccess.concretes.DefaultUserDao;
+import DataAccess.concretes.InMemoryUserDao;
 import Entities.concretes.User;
-import InMemoryDB.InMemory;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        //InMemory oluşturma amaçlı yapıldı
-        User user_1 = new User(1,"Görkem","Bilim","gorkembilim@test.com","gorkem123");
-        User user_2 = new User(2,"Zafer","Çalışkan","zafercaliskan@test.com","zafer123");
-        User user_3 = new User(3,"Sadık","Ortaoğlan","sadikortaoglan@test.com","sadik123");
-
-        InMemory inMemory = new InMemory();
-
-        inMemory.users.add(user_1);
-        inMemory.users.add(user_2);
-        inMemory.users.add(user_3);
+        InMemoryUserDao inMemory = new InMemoryUserDao();
 
         AuthorityService authorityService = new GoogleManagerAdapter(new GoogleManager());//Yetkilendirme içeren
         AuthorityService authorityService2 = new AuthorityDefaultManager();//Yetkilendirme içermeyen
 
-        AuthService authService = new AuthManager(new EmailManager(),new DefaultUserDao(inMemory),authorityService);
+        AuthService authService = new AuthManager(new EmailManager(),inMemory,authorityService);
 
         String actions = "1 - SignUp\n" +
                          "2 _ SignIn\n" +

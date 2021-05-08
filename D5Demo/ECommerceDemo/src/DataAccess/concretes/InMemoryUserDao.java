@@ -2,8 +2,6 @@ package DataAccess.concretes;
 
 import DataAccess.abstracts.UserDao;
 import Entities.concretes.User;
-import InMemoryDB.InMemory;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +10,7 @@ public class InMemoryUserDao implements UserDao {
     public static List<User> users = new ArrayList<User>();
 
     public InMemoryUserDao() {
+
         //InMemory oluşturma amaçlı yapıldı
         User user_1 = new User(1,"Görkem","Bilim","gorkembilim@test.com","gorkem123");
         User user_2 = new User(2,"Zafer","Çalışkan","zafercaliskan@test.com","zafer123");
@@ -21,7 +20,6 @@ public class InMemoryUserDao implements UserDao {
         InMemoryUserDao.users.add(user_2);
         InMemoryUserDao.users.add(user_3);
     }
-
 
     @Override
     public void addToDatabase(User user) {

@@ -11,10 +11,12 @@ public class AuthManager implements AuthService {
     private UserDao userDao;
     private AuthorityService authorityService;
 
-    public AuthManager(EmailService emailService, UserDao userDao,AuthorityService authorityService) {
+
+    public AuthManager(EmailService emailService, UserDao userDao,AuthorityService authorityService ) {
         this.emailService = emailService;
         this.userDao = userDao;
         this.authorityService = authorityService;
+
     }
 
     @Override
